@@ -16,7 +16,6 @@
                         </h1>
                     </div>
 
-                    <!-- Form Error Messages -->
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -32,7 +31,6 @@
                             @csrf
                             @method('PUT')
                             
-                            <!-- Original name field -->
                             <div class="form-group mb-4">
                                 <label for="originalName" class="block text-sm font-medium text-gray-700">Original Name:</label>
                                 <input type="text" class="form-control block w-full px-3 py-2 border border-gray-300 rounded-md" 

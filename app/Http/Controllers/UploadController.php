@@ -114,16 +114,21 @@ class UploadController extends Controller
      */
     public function destroy(Upload $upload)
     {
-        $upload = Upload::findOrFail($upload->id);
-        Storage::delete($upload->path);
-        $upload->delete();
-        return back()->with(['operation'=>'deleted', 'id'=>$upload->id]);
+        try {
+            $upload = Upload::findOrFail($upload->id);
+            $upload->deleteFileAndRecord();
+    
+            return back()->with(['operation' => 'deleted', 'id' => $upload->id]);
+        } catch (\Exception $e) {
+            // Handle the exception if needed
+            return back()->withErrors('Delete operation failed.');
+        }
     }
 
     public function dashboard()
     {
-    $uploads = Upload::all(); // 获取所有上传记录
-    return view('dashboard', ['uploads' => $uploads]); // 传递给视图
+    $uploads = Upload::all(); 
+    return view('dashboard', ['uploads' => $uploads]); 
     }
 
     // UploadController.php
