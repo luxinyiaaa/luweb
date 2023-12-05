@@ -15,6 +15,11 @@
                             @endif
                         @endauth
                 </div>
+                <form action="{{ url('search') }}" method="GET">
+                    <input type="text" name="search" placeholder="Search by OriginalName">
+                    <button type="submit">Search</button>
+                </form>
+                
                 <ol class="list-decimal list-inside">
                     @foreach ($uploads as $upload)
                         <li class="mb-4 p-2 border-b">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Log; // Add this line
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UploadController;
@@ -38,6 +39,7 @@ Route::middleware(['auth','admin'])->group(function(){
 });
 // web.php
 Route::get('/view/{upload}', [UploadController::class, 'view'])->name('uploads.view')->middleware('auth','verified');
+Route::get('/search', [SearchController::class,'search'])->name('search.results')->middleware('auth','verified');
 
 
 Route::get('/dashboard',  [UploadController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
